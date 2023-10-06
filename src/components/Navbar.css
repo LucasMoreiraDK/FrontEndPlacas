@@ -1,0 +1,27 @@
+/* components/Navbar.css */
+
+nav {
+    background-color: #007bff; /* Cor de fundo da navbar (azul no exemplo) */
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex; /* Para alinhar os itens horizontalmente */
+    justify-content: space-around; /* Para distribuir os itens igualmente */
+  }
+  
+  li {
+    margin: 0;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #fff; /* Cor do texto (branco no exemplo) */
+    padding: 10px 20px; /* Espaçamento interno dos links */
+  }
+  
+  a:hover {
+    background-color: #0056b3; /* Cor de fundo ao passar o mouse (azul escuro no exemplo) */
+  }
+  
