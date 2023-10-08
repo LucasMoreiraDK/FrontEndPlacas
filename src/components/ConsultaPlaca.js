@@ -12,7 +12,7 @@ function ConsultaPlaca() {
     fetch(`https://webiinodedeployapi.onrender.com/consulta/${placa}`)
       .then((response) => response.json())
       .then((data) => {
-        setResultado(data);
+        setResultado(data.message); // Acessa a propriedade 'message' da resposta JSON
       })
       .catch((error) => {
         console.error('Erro ao consultar placa:', error);
@@ -24,7 +24,7 @@ function ConsultaPlaca() {
       <h2>Consulta de Placa</h2>
       <input
         type="text"
-        placeholder="Digite a placa do veículo."
+        placeholder="Digite a placa do veículo"
         value={placa}
         onChange={handleInputChange}
       />
@@ -32,7 +32,7 @@ function ConsultaPlaca() {
       {resultado && (
         <div>
           <h3>Resultado:</h3>
-          <pre>{JSON.stringify(resultado, null, 2)}</pre>
+          <p>{resultado}</p> {/* Exibe o texto da mensagem */}
         </div>
       )}
     </div>
