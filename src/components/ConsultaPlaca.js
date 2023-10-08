@@ -1,37 +1,42 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
-function ConsultaCidade() {
-  const [cidade, setCidade] = useState(''); // Estado para armazenar a cidade digitada
+function ConsultaPlaca() {
+  const [placa, setPlaca] = useState('');
+  const [resultado, setResultado] = useState(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      // Faz a solicitação à API com a cidade fornecida
-      const response = await axios.get(`https://webiinodedeployapi.onrender.com/relatorio/cidade/${cidade}`);
-      
-      // Lida com a resposta da API (por exemplo, exibe os resultados)
-      console.log(response.data);
-    } catch (error) {
-      // Lida com erros, como exibição de uma mensagem de erro
-      console.error(error);
-    }
+  const handleInputChange = (e) => {
+    setPlaca(e.target.value);
   };
- 
+
+  const consultarPlaca = () => {
+    fetch(`https://webiinodedeployapi.onrender.com/consulta/${placa}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setResultado(data);
+      })
+      .catch((error) => {
+        console.error('Erro ao consultar placa:', error);
+      });
+  };
+
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Digite o nome da cidade"
-          value={cidade}
-          onChange={(e) => setCidade(e.target.value)}
-        />
-        <button type="submit">Enviar</button>
-      </form>
+      <h2>Consulta de Placa</h2>
+      <input
+        type="text"
+        placeholder="Digite a placa do veículo."
+        value={placa}
+        onChange={handleInputChange}
+      />
+      <button onClick={consultarPlaca}>Consultar</button>
+      {resultado && (
+        <div>
+          <h3>Resultado:</h3>
+          <pre>{JSON.stringify(resultado, null, 2)}</pre>
+        </div>
+      )}
     </div>
   );
 }
 
-export default ConsultaCidade;
+export default ConsultaPlaca;
