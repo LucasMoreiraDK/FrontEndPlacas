@@ -17,6 +17,12 @@ function Navbar() {
         <li>
           <Link to="/consulta-placa">Consulta por Placa</Link>
         </li>
+        <li>
+          <Link to="/Temperatura">Consulta Temperatura</Link>
+        </li>
+        <li>
+          <Link to="/Luminosidade">Consulta Luminosidade</Link>
+        </li>
       </ul>
     </nav>
   );
